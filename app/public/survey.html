@@ -159,6 +159,28 @@
 
       <br>
 
+      <!-- Modal -->
+      <div class="modal fade" id="resultsModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title">Your Closest Match Was...</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+              <h3 id="matchName"></h3>
+              <p id="matchName"></p>
+              <img id="matchPic" src="http://placehold.it/350x350" alt="">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!--submit survey-->
       <button type="submit" class="btn btn-primary submit">Submit</button>
     </form>
@@ -190,8 +212,10 @@
 
       var currentURL = window.location.origin;
 
-      $.post(currentURL + "/api/friends", newFriend, function () {
-       
+      $.post(currentURL + "/api/friends", newFriend, function(data) {
+        $("#matchName").text(data.name)
+        $("#matchPic").attr("src", data.photo)
+      $('#resultsModal').modal('toggle');
       })
       $("#userForm")[0].reset();
       return false;

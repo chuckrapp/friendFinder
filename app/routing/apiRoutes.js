@@ -35,16 +35,13 @@ module.exports = function (app) {
       console.log("new currentMatchScore: " + currentMatchScore);
       console.log("curentMatch: " + currentMatch.name);
       // currentMatchScore = 100;
-      showBestMatch();
     }
 
-    function showBestMatch() {
-      //show modal info
-    }
-
+    
+    
     //handle incoming survey results
     friendsData.push(req.body);
     // console.log(req)
-
+    res.json(currentMatch);
   })
 }
